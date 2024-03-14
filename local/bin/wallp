@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Check if a wallpaper path is provided
+if [ -z "$1" ]; then
+    echo "Error: Please provide the path to the wallpaper."
+    echo "Usage: $0 /path/to/your/wallpaper.jpg"
+    exit 1
+fi
+
+# Apply new wallpaper using Pywal
+wal -i "$1"
+
+# Reload BSPWM
+bspc wm -r
+# Restart Dunst if it's running
+pkill dunst
+dunst &
+sleep 1
+
+# Send notification
+notify-send "Theme updated" "Wallpaper and theme colors have been updated."
+clear
+
