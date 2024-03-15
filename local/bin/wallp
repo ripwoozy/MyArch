@@ -9,7 +9,8 @@ fi
 
 # Apply new wallpaper using Pywal
 wal -i "$1"
-
+# Apply new wallpaper to lockscreen
+betterlockscreen -u "$1" --fx blur
 # Reload BSPWM
 bspc wm -r
 # Restart Dunst if it's running

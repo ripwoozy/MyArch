@@ -43,6 +43,7 @@
 - **Wallpaper Manager:** [pywal](https://github.com/dylanaraps/pywal)
 - **App Launcher:** [rofi](https://github.com/davatorium/rofi)
 - **Status Bar:** [polybar](https://github.com/polybar/polybar)
+- **Lockscreen:** [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen)
 - **Compositor:** [picom](https://github.com/yshui/picom)
 - **Fonts:**
 
