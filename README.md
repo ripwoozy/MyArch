@@ -48,7 +48,7 @@
 - **Fonts:**
 
       JetBrains Mono - ttf-jetbrains-mono
-      Material Design Icons - ttf-material-icons-git
+      Material Design Icons - ttf-material-design-icons-desktop-git
 
 ## Utilities 🛠️
 - **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
