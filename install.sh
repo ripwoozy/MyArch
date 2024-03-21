@@ -212,8 +212,9 @@ main() {
     copy_local_bin
     enable_betterlockscreen_service
     copy_xinitrc_file
-    setup_zsh
     install_nvidia_drivers
+    #setup_zsh
+
 
 
     echo -e "${GREEN}Dotfiles installation completed!${NC}"
