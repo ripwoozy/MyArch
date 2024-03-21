@@ -12,7 +12,7 @@ CONFIG_DIR="$HOME/.config"
 LOCAL_BIN_DIR="$HOME/.local/bin"
 
 # Define packages
-DEPENDENCIES=("bspwm" "kitty" "neofetch" "picom" "polybar" "rofi" "sxhkd" "feh" "playerctl" "dunst" "scrot" "libnotify" "wget" "zsh")
+DEPENDENCIES=("bspwm" "kitty" "neofetch" "picom" "polybar" "rofi" "sxhkd" "feh" "playerctl" "dunst" "scrot" "libnotify" "wget" "zsh" "pulseaudio")
 AUR_PACKAGES=("ttf-jetbrains-mono" "betterlockscreen" "ttf-material-design-icons-desktop-git")
 X_PACKAGES=("xorg-server" "xorg-xinit" "xorg-xrandr" "libx11" "libxft" "libxinerama" "xorg-xsetroot")
 
