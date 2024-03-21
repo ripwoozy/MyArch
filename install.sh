@@ -193,6 +193,19 @@ copy_xinitrc_file() {
     chmod +x ~/.xinitrc || handle_error "copying .xinitrc file" "Ensure you have necessary permissions."
 }
 
+
+# Function to move wallpapers and set a wallpaper
+move_wallpapers_and_set() {
+    module_name "Wallpapers"
+    status "Moving wallpapers to $HOME/Pictures/Wallpapers..."
+    mkdir -p "$HOME/Pictures/Wallpapers" || handle_error "creating Wallpapers directory" "Ensure you have necessary permissions." 
+    mv ~/.dotfiles/wallpapers/* "$HOME/Pictures/Wallpapers/" || handle_error "moving wallpapers" "Ensure you have necessary permissions." 
+
+    status "Setting wallpaper..."
+    ~/.local/bin/wallp "$HOME/Pictures/Wallpapers/winter.jpg" || handle_error "setting wallpaper" "Ensure wallp script is installed and the wallpaper file exists." 
+}
+
+
 # Function to clean up temporary directories and files
 cleanup() {
     module_name "Cleanup"
@@ -212,6 +225,7 @@ main() {
     copy_local_bin
     enable_betterlockscreen_service
     copy_xinitrc_file
+    move_wallpapers_and_set
     install_nvidia_drivers
     #setup_zsh
 
