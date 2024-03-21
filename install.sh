@@ -169,7 +169,7 @@ copy_local_bin() {
 enable_betterlockscreen_service() {
     module_name "Betterlockscreen Service"
     status "Enabling betterlockscreen service for $USER..."
-    systemctl --user enable betterlockscreen@$USER || handle_error "enabling betterlockscreen service" "Ensure you have necessary permissions."
+    sudo systemctl enable betterlockscreen@$USER || handle_error "enabling betterlockscreen service" "Ensure you have necessary permissions."
 }
 
 # Function to install Oh My Zsh
