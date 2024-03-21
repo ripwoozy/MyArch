@@ -152,8 +152,6 @@ move_and_make_executable() {
     touch "$CONFIG_DIR/dunst/dunstrc"
     chmod +x "$CONFIG_DIR/dunst/dunstrc" || handle_error "making file executable" "Ensure you have necessary permissions."
 
-    # Move wal folder
-    mv ~/.dotfiles/wal "$CONFIG_DIR/"
 }
 
 # Function to copy local bin scripts
