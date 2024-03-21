@@ -148,6 +148,7 @@ move_and_make_executable() {
     done
 
     # Create dunstrc
+    mkdir "$CONFIG_DIR/dunst/"
     touch "$CONFIG_DIR/dunst/dunstrc"
     chmod +x "$CONFIG_DIR/dunst/dunstrc" || handle_error "making file executable" "Ensure you have necessary permissions."
 
