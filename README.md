@@ -47,8 +47,9 @@
 - **Compositor:** [picom](https://github.com/yshui/picom)
 - **Fonts:**
 
-      JetBrains Mono - ttf-jetbrains-mono
-      Material Design Icons - ttf-material-design-icons-desktop-git
+  - JetBrains Mono - ttf-jetbrains-mono
+  
+  - Material Design Icons - [ttf-material-design-icons-desktop-git](https://pictogrammers.com/library/mdi/)
 
 ## Utilities 🛠️
 - **Terminal:** [Kitty](https://github.com/kovidgoyal/kitty)
