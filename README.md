@@ -57,5 +57,5 @@
 
 ## Credits 🌟
 
-- [verttj/dotfiles-ltint](https://github.com/verttj/dotfiles-ltint) for providing inspiration for Polybar configuration.
-- [ericmurphyxyz/rofi-wifi-menu](https://github.com/ericmurphyxyz/rofi-wifi-menu) for the Rofi WiFi menu.
+- [verttj/dotfiles-ltint](https://github.com/verttj/dotfiles-ltint) Providing inspiration for Polybar configuration.
+- [ericmurphyxyz/rofi-wifi-menu](https://github.com/ericmurphyxyz/rofi-wifi-menu) Rofi WiFi menu.
