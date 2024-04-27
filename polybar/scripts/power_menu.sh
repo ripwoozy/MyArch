@@ -9,7 +9,7 @@ case $selected_option in
         betterlockscreen -l blur
         ;;
     "󰍃 Logout")
-        i3-msg exit
+        killall bspwm
         ;;
     "󰖔 Suspend")
         systemctl suspend

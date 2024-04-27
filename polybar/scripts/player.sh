@@ -5,17 +5,17 @@ status=$(playerctl status 2>/dev/null)
 
 # Check if playerctl returned any status
 if [ -z "$status" ]; then
-    echo "No media player is currently running."
+    echo "󰐍 "
 else
     case "$status" in
         "Playing")
-            echo "󰒮   󰒭"
+            echo "󰏦 "
             ;;
         "Paused")
-            echo "󰒮   󰒭"
+            echo "󰐍 "
             ;;
         *)
-            echo "Player status: $status"
+            echo "󰐍 "
             ;;
     esac
 fi
