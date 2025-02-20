@@ -1,20 +1,23 @@
-# Check if X server is running
+#!/bin/bash
+# Only proceed if X is running
 if [ -n "$DISPLAY" ]; then
-    # Iterate over connected monitors
-    for monitor in $(xrandr -q | grep -w 'connected' | cut -d' ' -f1); do
-        # Check if resolution is already set to 2560x1440
-        if xrandr | grep -q "$monitor connected"; then
-            if ! xrandr | grep -q "2560x1440"; then
-                xrandr --output "$monitor" --mode 2560x1440
-            fi
+    # Find the internal (built-in) display (typically named "eDP" or "LVDS")
+    internal_monitor=$(xrandr --query | grep " connected" | grep -E "eDP|LVDS" | cut -d" " -f1 | head -n 1)
 
-            # Check if refresh rate is already set to 144 Hz
-            current_refresh_rate=$(xrandr --verbose | awk -v monitor="$monitor" '/^\s*144.00\s*$/ {getline; if ($1 == monitor) print $2}')
-            if [ "$current_refresh_rate" != "hertz" ]; then
-                xrandr --output "$monitor" --mode 2560x1440 --rate 144
-            fi
+    if [ -n "$internal_monitor" ]; then
+        # Set the built-in display to 1920x1080 @ 60Hz (common for T480)
+        xrandr --output "$internal_monitor" --mode 1920x1080 --rate 60
+    fi
+
+    # Configure any external monitors (if connected) separately
+    for monitor in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        # Skip the internal display that we already configured
+        if [ "$monitor" != "$internal_monitor" ]; then
+            # Set external monitor to 2560x1440 @ 144Hz (adjust if needed)
+            xrandr --output "$monitor" --mode 2560x1440 --rate 144
         fi
     done
 fi
 
-bspwm
+# Start bspwm
+exec bspwm
