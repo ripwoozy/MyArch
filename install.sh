@@ -11,7 +11,7 @@ set -euo pipefail
 
 # Repository URLs and branches
 DOTFILES_REPO_URL="https://github.com/ripwoozy/MyArch.git"
-DOTFILES_REPO_BRANCH="Thinkpad-T480"
+DOTFILES_REPO_BRANCH="main"
 YAY_REPO_URL="https://aur.archlinux.org/yay.git"
 NVIDIA_DRIVERS_REPO_URL="https://github.com/Frogging-Family/nvidia-all.git"
 
