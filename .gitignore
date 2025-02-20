@@ -1,0 +1,23 @@
+# Ignore temporary files and backups
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+
+# Ignore build and temporary directories
+cache/
+tmp/
+build/
+dist/
+
+# Ignore log files
+*.log
+
+# Do not ignore dotfiles (ensure hidden config files are tracked)
+!.gitignore
+!.??*
