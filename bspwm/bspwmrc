@@ -1,12 +1,11 @@
 #! /bin/sh
 
 # ╔╗ ╔═╗╔═╗╦ ╦╔╦╗╦═╗╔═╗
-# ╠╩╗╚═╗╠═╝║║║║║║╠╦╝║  
+# ╠╩╗╚═╗╠═╝║║║║║║╠╦╝║
 # ╚═╝╚═╝╩  ╚╩╝╩ ╩╩╚═╚═╝
 
 ## Fix java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
-
 
 #  ╦ ╦╔═╗╦═╗╦╔═╔═╗╔═╗╔═╗╔═╗╔═╗╔═╗
 #  ║║║║ ║╠╦╝╠╩╗╚═╗╠═╝╠═╣║  ║╣ ╚═╗
@@ -14,31 +13,41 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 
 connected_monitors=$(xrandr -q | grep -w 'connected' | cut -d' ' -f1)
 
-# Loop over each connected monitor
+# Loop over each connected monitor and assign workspaces
 for monitor in $connected_monitors; do
     bspc monitor "$monitor" -d '1' '2' '3' '4' '5' '6'
-    # You can uncomment the below line if you want to use the font awesome icons for desktops
+    # Uncomment the following line to use Font Awesome icons for desktops:
     # bspc monitor "$monitor" -d '' '' '' '' '' ''
 done
 
-#  ╔╗ ╔═╗╔═╗╦ ╦╔╦╗  ╔═╗╔═╗╔╗╔╔═╗╦╔═╗
-#  ╠╩╗╚═╗╠═╝║║║║║║  ║  ║ ║║║║╠╣ ║║ ╦
-#  ╚═╝╚═╝╩  ╚╩╝╩ ╩  ╚═╝╚═╝╝╚╝╚  ╩╚═╝
+# ── Configure monitor resolutions ─────────────────────────────
+# Detect internal (built-in) display for ThinkPad T480 (usually eDP or LVDS)
+internal_monitor=$(xrandr --query | grep " connected" | grep -E "eDP|LVDS" | cut -d" " -f1 | head -n 1)
+if [ -n "$internal_monitor" ]; then
+    # Set built-in display to 1920x1080 @ 60Hz
+    xrandr --output "$internal_monitor" --mode 1920x1080 --rate 60
+fi
 
+# For any external monitors (if connected), set to 2560x1440 @ 144Hz
+external_monitors=$(xrandr --query | grep " connected" | grep -vE "eDP|LVDS" | cut -d" " -f1)
+for monitor in $external_monitors; do
+    xrandr --output "$monitor" --mode 2560x1440 --rate 144
+done
+
+# ── BSPWM Appearance & Behavior ────────────────────────────────
 bspc config border_width         2
-bspc config window_gap          12
+bspc config window_gap           12
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
-# source the colors.
+# Source the Pywal colors
 . "${HOME}/.cache/wal/colors.sh"
-# Set the border colors.
-bspc config normal_border_color "$color1"
-bspc config active_border_color "$color2"
+bspc config normal_border_color  "$color1"
+bspc config active_border_color  "$color2"
 bspc config focused_border_color "$color15"
 
-# Fix Cursor
+# Fix the cursor appearance
 xsetroot -cursor_name left_ptr &
 
 #  ╔═╗╦ ╦╔╦╗╔═╗╔═╗╔╦╗╔═╗╦═╗╔╦╗
@@ -46,9 +55,19 @@ xsetroot -cursor_name left_ptr &
 #  ╩ ╩╚═╝ ╩ ╚═╝╚═╝ ╩ ╩ ╩╩╚═ ╩
 
 sxhkd -c "$HOME"/.config/sxhkd/sxhkdrc &
-picom --config ~/.config/picom/picom.conf &
+picom --config "$HOME"/.config/picom/picom.conf &
 wal -R &
-xrdb -merge /home/woozy/.cache/wal/colors.Xresources
-ln -sf    "${HOME}/.cache/wal/dunstrc"    "${HOME}/.config/dunst/dunstrc"
-dunst -conf ~/.config/dunst/dunstrc &
-$HOME/.config/polybar/launch.sh &
+
+# Merge Xresources (runs synchronously)
+xrdb -merge "$HOME"/.cache/wal/colors.Xresources
+
+# Update dunst config symlink and launch dunst
+ln -sf "$HOME"/.cache/wal/dunstrc "$HOME"/.config/dunst/dunstrc
+dunst -conf "$HOME"/.config/dunst/dunstrc &
+
+# Optional delay to ensure everything is set up before launching polybar
+sleep 1
+"$HOME"/.config/polybar/launch.sh &
+
+# Finally, start bspwm
+exec bspwm
