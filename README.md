@@ -73,8 +73,6 @@ Welcome to my **minimal, efficient, and visually stunning** Arch Linux configura
 | 🎯 Shortcut          | 📷 Action                               |
 |----------------------|--------------------------------------|
 | **Super + Print**    | Capture entire screen               |
-| **Super + Shift + S**| Capture a selected region          |
-| **Super + Shift + C**| Copy screenshot to clipboard       |
 
 ---
 
@@ -131,13 +129,6 @@ Here’s how this setup looks in action:
 ![Screenshot 1](./screenshots/screenshot1.png)
 ![Screenshot 2](./screenshots/screenshot2.png)
 ![Screenshot 4](./screenshots/screenshot4.png)
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.  
-Feel free to modify, distribute, and use this configuration in accordance with the license terms.
 
 ---
 
