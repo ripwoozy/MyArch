@@ -1,4 +1,6 @@
 #!/bin/bash
+# Author: ripwoozy
+
 # Only proceed if X is running
 if [ -n "$DISPLAY" ]; then
     # Find the internal (built-in) display (typically named "eDP" or "LVDS")

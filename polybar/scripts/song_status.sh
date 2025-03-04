@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: ripwoozy
 
 # Function to get current song info
 get_current_song_info() {
@@ -23,18 +24,23 @@ format_time() {
 
 # Function to display current time, artist, and title of the song
 display_current_time() {
-    local current_song_info=$(get_current_song_info)
-    local artist=$(echo "$current_song_info" | awk -F ' § ' '{print $1}')
-    local title=$(echo "$current_song_info" | awk -F ' § ' '{print $2}')
-    local truncated_title=$(truncate_title "$title")
-    local current_time=$(playerctl position)
-    local source=$(playerctl metadata --format "{{ playerName }}")
-    
+    local current_song_info
+    current_song_info=$(get_current_song_info)
+    local artist
+    artist=$(echo "$current_song_info" | awk -F ' § ' '{print $1}')
+    local title
+    title=$(echo "$current_song_info" | awk -F ' § ' '{print $2}')
+    local truncated_title
+    truncated_title=$(truncate_title "$title")
+    local current_time
+    current_time=$(playerctl position)
+    local source
+    source=$(playerctl metadata --format "{{ playerName }}")
+
     if [[ "$source" == "spotify" ]]; then
         if [[ -n "$current_time" ]]; then
             # Format time in MM:SS
             current_time_formatted=$(format_time ${current_time%.*})
-            
             # Output the current time, artist, and truncated title for Spotify
             echo "$artist - $truncated_title [$current_time_formatted]"
         else
@@ -42,7 +48,7 @@ display_current_time() {
             echo "$artist - $truncated_title"
         fi
     elif [[ "$source" == "firefox" ]]; then
-        # For YouTube (Firefox), print artist
+        # For YouTube (Firefox), print only the truncated title
         echo "$truncated_title"
     else
         # Output the artist and truncated title for other sources

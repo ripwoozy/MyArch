@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firefox Landing Page</title>
+  <!-- Load JetBrains Mono font -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Link to your pywal CSS using the full file path -->
+  <link id="pywal" rel="stylesheet" href="file:///home/woozy/.cache/wal/colors.css" />
+  <!-- Link to custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="profile">
+      <!-- Profile picture -->
+      <img src="pfp.png" alt="Profile Picture" id="profilePic" />
+      <!-- Greeting message -->
+      <div class="greeting" id="greeting"></div>
+    </div>
+    <!-- Sleek Search Form -->
+    <div class="search-bar">
+      <form action="https://www.google.com/search" method="get" target="_blank">
+        <input type="text" name="q" placeholder="..." autofocus />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+  <!-- Variables file -->
+  <script src="variables.js"></script>
+  <!-- Main JS file -->
+  <script src="script.js"></script>
+</body>
+</html>

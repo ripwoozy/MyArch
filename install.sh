@@ -21,15 +21,16 @@ LOCAL_BIN_DIR="$HOME/.local/bin"
 
 # Package arrays
 DEPENDENCIES=(
-    "bspwm" "kitty" "fastfetch" "picom" "polybar" "rofi" "sxhkd" "feh"
+    "bspwm" "kitty" "fastfetch" "python-pywal" "picom"
+    "polybar" "rofi" "sxhkd" "feh" "imv" "tlp" "powertop"
     "playerctl" "dunst" "scrot" "libnotify" "wget" "zsh"
-    "alsa-utils" "bluez" "bluez-utils" "bluetui"
+    "alsa-utils" "bluez" "bluez-utils" "bluetui" "brightnessctl"
     "pipewire" "pipewire-alsa" "pipewire-pulse" "wireplumber"
     "btop" "base-devel"
 )
 # AUR packages
 AUR_PACKAGES=(
-    "ttf-jetbrains-mono" "betterlockscreen" "ttf-material-design-icons-desktop-git"
+    "ttf-jetbrains-mono" "betterlockscreen" "ttf-material-design-icons-desktop-git" "python-pywalfox"
 )
 X_PACKAGES=(
     "xorg-server" "xorg-xinit" "xorg-xrandr" "libx11" "libxft" "libxinerama" "xorg-xsetroot"
@@ -69,17 +70,6 @@ ctrl_c() {
     echo "Ctrl+C pressed. Exiting..."
     cleanup
     exit 1
-}
-
-#######################
-# Mirror Update Function
-#######################
-
-update_mirrors() {
-    module_name "Updating Mirrors"
-    status "Installing reflector and updating mirror list..."
-    sudo pacman -S --noconfirm reflector || handle_error "installing reflector" "Check sudo permissions and internet connection."
-    sudo reflector --verbose --latest 10 --protocol https --sort rate --save /etc/pacman.d/mirrorlist || handle_error "updating mirrors" "Ensure your internet connection is active."
 }
 
 #######################
@@ -227,7 +217,6 @@ cleanup() {
 #######################
 
 main() {
-    update_mirrors
     create_classic_folders
     install_yay
     install_aur_packages
@@ -240,8 +229,7 @@ main() {
     copy_xinitrc_file
     move_wallpapers_and_set
     install_nvidia_drivers
-    # Uncomment the next line if you want to set up zsh and Oh My Zsh
-    # setup_zsh
+    setup_zsh
 
     status "Installation completed successfully!"
     cleanup
@@ -261,6 +249,7 @@ cat << "EOF"
 ██║ ╚═╝ ██║   ██║       ██║  ██║██║  ██║╚██████╗██║  ██║
 ╚═╝     ╚═╝   ╚═╝       ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
               THINKPAD T480 EDITION
+         https://github.com/ripwoozy/MyArch
 EOF
 echo -e "${NC}"
 

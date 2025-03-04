@@ -32,20 +32,27 @@
     # Allow some HTML tags like <i> and <u> in notifications
     markup = full
     min_icon_size = 64
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_corner_radius = 5
+
+
 # Set the background and foreground (text) color for all notifications
 [urgency_low]
     background = "{background}"
     foreground = "{foreground}"
+    highlight = "{color4}"
+    timeout = 5
 
 [urgency_normal]
     background = "{background}"
     foreground = "{foreground}"
+    highlight = "{color4}"
+    timeout = 20
 
 [urgency_critical]
     background = "{background}"
     foreground = "{foreground}"
-
+    highlight = "{color4}"
+    timeout = 0
 # vim:ft=cfg

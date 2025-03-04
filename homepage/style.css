@@ -1,0 +1,105 @@
+/* Base styling using JetBrains Mono and pywal colors */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: var(--background);
+    color: var(--foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-y: auto;
+}
+.container {
+    width: 90%;
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1s ease-in-out;
+}
+.profile {
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+.profile img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid var(--color1);
+    transition: border-color 0.5s;
+    animation: pulse 2s infinite;
+    /* Glowing effect on the profile picture */
+    box-shadow: 0 0 15px var(--color1);
+}
+.greeting {
+    font-size: 2rem;
+    margin-top: 15px;
+    animation: slideIn 1s ease-out;
+    /* Changed to block to force the greeting below the image */
+    display: block;
+}
+.username {
+    text-shadow: 0 0 8px var(--color1);
+}
+.emoji {
+    white-space: nowrap;
+}
+.search-bar {
+    margin: 30px auto 0;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    border: 2px solid var(--color1);
+    border-radius: 50px;
+    padding: 5px 10px;
+    animation: fadeIn 1.5s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.search-bar form {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+.search-bar input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--foreground);
+}
+.search-bar button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px;
+    background-color: var(--color1);
+    color: var(--foreground);
+    cursor: pointer;
+    transition: background-color 0.5s;
+    margin-left: 10px;
+}
+.search-bar button:hover {
+    opacity: 0.9;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

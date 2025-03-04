@@ -1,16 +1,10 @@
-/**
- *
- * Author : Aditya Shakya (adi1090x)
- * Github : @adi1090x
- * 
- * Rofi Theme File
- * Rofi Version: 1.7.3
- **/
-
-/*****----- Configuration -----*****/
+****----- Configuration -----*****/
 configuration {
     show-icons:                 false;
 }
+
+@import "colors.rasi"
+
 
 /*****----- Global Properties -----*****/
 * {
@@ -24,15 +18,15 @@ configuration {
     element-padding:             35px 40px;
     element-border-radius:       20px;
 
-    prompt-font:                 "Iosevka Nerd Font Bold 72";
-    textbox-font:                "Iosevka Nerd Font 14";
-    element-text-font:           "feather 64";
+    prompt-font:                 "JetBrains Mono Nerd Font 64";
+    textbox-font:                "JetBrains Mono Nerd Font 12";
+    element-text-font:           "JetBrains Mono Nerd Font 64";
 
     background-window:           black/50%;
     background-normal:           white/5%;
     background-selected:         white/15%;
-    foreground-normal:           white;
-    foreground-selected:         white;
+    foreground-normal:           @foreground;
+    foreground-selected:         @selected-active-background;
 }
 
 /*****----- Main Window -----*****/

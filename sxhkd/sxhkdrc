@@ -1,3 +1,5 @@
+# Author: ripwoozy
+
 # ╔═╗═╗ ╦╦ ╦╦╔═╔╦╗╦═╗╔═╗
 # ╚═╗╔╩╦╝╠═╣╠╩╗ ║║╠╦╝║
 # ╚═╝╩ ╚═╝╩ ╩╩ ╩═╩╝╩╚═╚═╝
@@ -5,7 +7,6 @@
 # ╦ ╦╔╦╗  ╦ ╦╔═╗╔╦╗╦╔═╔═╗╦ ╦╔═╗
 # ║║║║║║  ╠═╣║ ║ ║ ╠╩╗║╣ ╚╦╝╚═╗
 # ╚╩╝╩ ╩  ╩ ╩╚═╝ ╩ ╩ ╩╚═╝ ╩ ╚═╝
-
 # Terminal emulator
 super + Return
     kitty
@@ -21,7 +22,6 @@ super + Escape
 # ╔╗ ╔═╗╔═╗╦ ╦╔╦╗  ╦ ╦╔═╗╔╦╗╦╔═╔═╗╦ ╦╔═╗
 # ╠╩╗╚═╗╠═╝║║║║║║  ╠═╣║ ║ ║ ╠╩╗║╣ ╚╦╝╚═╗
 # ╚═╝╚═╝╩  ╚╩╝╩ ╩  ╩ ╩╚═╝ ╩ ╩ ╩╚═╝ ╩ ╚═╝
-
 # Quit/restart bspwm
 super + alt + r
     bspc {quit,wm -r}
@@ -63,38 +63,38 @@ super + {_,shift + }{1-9,0}
 # ║║║║ ║╚╗╔╝║╣   ╠╦╝║╣ ╚═╗║╔═╝║╣
 # ╩ ╩╚═╝ ╚╝ ╚═╝  ╩╚═╚═╝╚═╝╩╚═╝╚═╝
 # Expand/contract the window (resize)
-
-super + alt + control + Left
-    bspc node -z left -20 0
-
-super + alt + control + Right
-    bspc node -z right 20 0
-
-super + alt + control + Up
-    bspc node -z top 0 -20
-
-super + alt + control + Down
-    bspc node -z bottom 0 20
+super + alt + control + {Left,Down,Up,Right}
+  bspc node -z {left -20 0 || bspc node -z right -20 0, \
+                bottom 0 20 || bspc node -z top 0 20,\
+                top 0 -20 || bspc node -z bottom 0 -20,\
+                right 20 0 || bspc node -z left 20 0}
 
 # ╔═╗╦ ╦╔═╗╔╦╗╔═╗╔╦╗
 # ╚═╗╚╦╝╚═╗ ║ ║╣ ║║║
 # ╚═╝ ╩ ╚═╝ ╩ ╚═╝╩ ╩
-
 # Increase audio volume
 F3
-    pactl set-sink-volume @DEFAULT_SINK@ +5%
+    ~/.local/bin/volume_brightness.sh volume_up
 
 # Decrease audio volume
 F2
-    pactl set-sink-volume @DEFAULT_SINK@ -5%
+    ~/.local/bin/volume_brightness.sh volume_down
+
+# Mute audio
+F1
+    ~/.local/bin/volume_brightness.sh volume_mute
 
 # Increase brightness
 F6
-    brightnessctl set +10%
+    ~/.local/bin/volume_brightness.sh brightness_up
 
 # Decrease brightness
 F5
-    brightnessctl set 10%-
+    ~/.local/bin/volume_brightness.sh brightness_down
+
+# Screenshot
+super + Print
+     ~/.local/bin/screenshot.sh
 
 # Power menu shortcut
 ctrl + alt + Delete

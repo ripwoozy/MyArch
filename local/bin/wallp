@@ -1,16 +1,16 @@
 #!/bin/bash
+# Author: ripwoozy
 # Improved Wallpaper & Theme Update Script
-# Usage: ./update_theme.sh /path/to/wallpaper.jpg [path/to/fastfetch_logo.jpg]
+# Usage: ./update_theme.sh /path/to/wallpaper.jpg
 
 # Check if a wallpaper path is provided
 if [ -z "$1" ]; then
     echo "Error: Please provide the path to the wallpaper."
-    echo "Usage: $0 /path/to/your/wallpaper.jpg [path/to/fastfetch_logo.jpg]"
+    echo "Usage: $0 /path/to/your/wallpaper.jpg"
     exit 1
 fi
 
 WALLPAPER="$1"
-FASTFETCH_LOGO="$2"
 
 # Create a scaled-down version of the wallpaper for faster lockscreen generation
 # Adjust the resolution as needed (here we resize to fit within 1920x1080)
@@ -19,11 +19,6 @@ convert "$WALLPAPER" -resize 1920x1080\> "$TMP_BG"
 
 # Apply new wallpaper using Pywal
 wal -i "$WALLPAPER"
-
-# Update the fastfetch logo if a logo path is provided
-if [ -n "$FASTFETCH_LOGO" ]; then
-    ln -sf "$FASTFETCH_LOGO" "$HOME/.config/fastfetch/girx.jpg"
-fi
 
 # (Optional) Update your Eww wallpaper variable if your widget uses it.
 # Uncomment the line below if needed.
@@ -43,6 +38,12 @@ sleep 1
 
 # Send a notification that the theme has been updated
 notify-send "Theme Updated" "Wallpaper and theme colors have been updated."
+
+# Cache the current wallpaper:
+# Create cache directory if it doesn't exist and copy the wallpaper to ~/.cache/wallpaper/current_wallpaper
+CACHE_DIR="$HOME/.cache/wallpaper"
+mkdir -p "$CACHE_DIR"
+cp "$WALLPAPER" "$CACHE_DIR/current_wallpaper"
 
 # Clear the terminal
 clear

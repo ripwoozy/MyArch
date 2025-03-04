@@ -1,4 +1,5 @@
 #!/bin/bash
+# Author: ripwoozy
 
 # Terminate already running polybar instances
 killall -q polybar
