@@ -129,7 +129,3 @@ Here’s how this setup looks in action:
 ![Screenshot 1](./screenshots/screenshot1.png)
 ![Screenshot 2](./screenshots/screenshot2.png)
 ![Screenshot 4](./screenshots/screenshot4.png)
-
----
-
-🔥 **Enjoy your minimal, efficient, and aesthetically pleasing Arch experience on the Thinkpad T480!** 🚀
